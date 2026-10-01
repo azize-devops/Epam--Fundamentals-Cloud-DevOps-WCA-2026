@@ -1,0 +1,254 @@
+<div align="center">
+
+# 🐧 Linux Introduction
+
+[🇬🇧 English](./Linux%20Introduction.md) · **🇹🇷 Türkçe**
+
+![Questions](https://img.shields.io/badge/soru-12-blue?style=for-the-badge) ![Topic](https://img.shields.io/badge/konu-Linux%20Introduction-success?style=for-the-badge)
+
+[⬅️ DevOps BootCamp: Linux](./)
+
+</div>
+
+✅ = doğru, ❌ = yanlış. Her şıkkın yanında kısa bir açıklama var.
+
+---
+
+### Soru 1
+
+**Which OS was used in the origin of Linux?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | FreeBSD | BSD ailesinden ayrı bir sistem, Linux'un çıkışıyla ilgisi yok. |
+| ❌ | MacOS | Linux'un geliştirildiği ortam değil. |
+| ✅ | MINIX | Linus Torvalds Linux'u yazmaya MINIX üzerinde çalışırken başladı. |
+| ❌ | OS/2 | IBM/Microsoft'un sistemi, Linux'un kökeniyle ilgisi yok. |
+
+> [!TIP]
+> **Doğru cevap:** MINIX
+
+---
+
+### Soru 2
+
+**One of the first programs loaded on Linux start-up after the bootloader.**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | Grub | Bu zaten bootloader'ın kendisi, ondan sonra değil. |
+| ✅ | Kernel | Bootloader çekirdeği belleğe yükler, sistemde ilk ayağa kalkan temel yazılım odur. |
+| ❌ | Root | Bir kullanıcı/dizin adı, program değil. |
+| ❌ | Shell | Kernel açıldıktan ve kullanıcı oturumu başladıktan sonra gelir. |
+
+> [!TIP]
+> **Doğru cevap:** Kernel
+
+---
+
+### Soru 3
+
+**Which program provides an interface between a user and an operating system (OS) kernel?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | Lilo | Eski bir boot loader. |
+| ❌ | Linux daemon | Arka planda çalışan servis, kullanıcı arayüzü değil. |
+| ✅ | Shell | Yazdığın komutları alıp kernel'e iletir, sonucu sana geri gösterir. |
+
+> [!TIP]
+> **Doğru cevap:** Shell
+
+---
+
+### Soru 4
+
+**Does Linux make any assumptions about file content by its extension?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | Yes | Linux uzantıya bakarak içerik hakkında varsayım yapmaz. |
+| ✅ | No | Uzantı sadece bir isimdir. `.txt` dosyası aslında program olabilir, `.sh` olmayan bir dosya da çalıştırılabilir. Önemli olan dosya izinleri ve içeriğin kendisi. |
+
+> [!TIP]
+> **Doğru cevap:** No
+
+---
+
+### Soru 5
+
+**Mark all Linux related file systems.**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ✅ | EXT2 | Klasik Linux dosya sistemi. |
+| ✅ | EXT3 | EXT2'ye journaling eklenmiş hali. |
+| ✅ | EXT4 | Bugün en yaygın kullanılan Linux dosya sistemi. |
+| ❌ | NTFS | Windows'un dosya sistemi. (Linux okuyup yazabilir ama ona ait değil.) |
+| ✅ | ReiserFS | Linux için geliştirilmiş bir journaling dosya sistemi. |
+| ✅ | XFS | Büyük dosya ve disklerde güçlü, Linux'ta yaygın. |
+
+> [!TIP]
+> **Doğru cevap:** EXT2, EXT3, EXT4, ReiserFS, XFS
+
+---
+
+### Soru 6
+
+**What is true about Hard links?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ✅ | Hard link is a direct pointer to an inode | Doğrudan dosyanın inode'unu gösterir. Aynı verinin ikinci bir adı gibi. |
+| ❌ | One file cannot have more then 3 Hard links | Böyle bir 3'lük sınır yok. |
+| ✅ | Hard link has the same attributes as an original file | İkisi de aynı inode'u paylaştığı için izin, sahip, boyut aynı. |
+| ✅ | Changes in any reflect in all | Veri tek, hangi isimden değiştirsen hepsinde görünür. |
+| ❌ | File cannot be accessable by Hard link after deletion of the original one | Orijinal ismi silsen de inode ve veri, başka bir hard link varsa durur. Dosyaya hard link üzerinden erişmeye devam edersin. |
+| ✅ | Hard link could be created only whithin the same filesystem | Inode numarası bir dosya sistemine özgü olduğu için dosya sistemleri arası hard link olmaz. |
+
+> [!TIP]
+> **Doğru cevap:** 1., 3., 4. ve 6. şıklar
+
+---
+
+### Soru 7
+
+**What is true about Soft links?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | Soft link is a direct pointer to an inode | Bu hard link'in özelliği. Soft link inode'u değil, dosyanın yolunu (path) gösterir. |
+| ❌ | One file cannot have more then 5 Soft links | Böyle bir sınır yok. |
+| ❌ | Soft link has the same attributes as an original file | Soft link kendi başına ayrı bir dosyadır, kendi izin ve boyutu vardır. |
+| ✅ | If removed, the original file will remain | Linki silmek sadece kısayolu siler, asıl dosya yerinde durur. |
+| ✅ | File cannot be accessable by Soft link after deletion of the original one | Asıl dosya silinirse link boşa düşer (dangling link), erişim olmaz. |
+
+> [!TIP]
+> **Doğru cevap:** 4. ve 5. şıklar
+
+---
+
+### Soru 8
+
+**What is correct order of adding new disk to LVM?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | pvcreate > lgcreate > lvcreate > mkfs | `lgcreate` diye bir komut yok. |
+| ❌ | pvcreate > lvcreate > lgcreate > mkfs | Yine `lgcreate` yok, sıra da yanlış. |
+| ✅ | pvcreate > vgcreate > lvcreate > mkfs | Önce diski physical volume yaparsın, sonra volume group'a katarsın, sonra logical volume oluşturursun, en son dosya sistemini kurarsın. |
+| ❌ | pvcreate > lvcreate > vgcreate > mkfs | Volume group olmadan logical volume oluşturamazsın, sıra ters. |
+
+> [!TIP]
+> **Doğru cevap:** pvcreate > vgcreate > lvcreate > mkfs
+
+---
+
+### Soru 9
+
+**What commands could show information about swap usage?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ✅ | `cat /proc/swaps` | Aktif swap alanlarını ve kullanımı gösterir. |
+| ✅ | `swapon` | `swapon --show` ile swap alanlarını ve kullanımı listeler. |
+| ✅ | `free -h` | RAM ile birlikte swap kullanımını da okunaklı gösterir. |
+| ❌ | `makeswap` | Böyle bir komut yok. Swap oluşturan komut `mkswap`, o da kullanım göstermez. |
+
+> [!TIP]
+> **Doğru cevap:** `cat /proc/swaps`, `swapon`, `free -h`
+
+---
+
+### Soru 10
+
+**What is not a boot loader?**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | LILO | Gerçek bir boot loader (eski bir Linux Loader). |
+| ✅ | LIFO | Last In First Out, bir veri yapısı (yığın) kavramı, boot loader değil. |
+| ✅ | FIFO | First In First Out, kuyruk mantığı, boot loader değil. |
+| ❌ | GRUB | En yaygın Linux boot loader'ı. |
+
+> [!TIP]
+> **Doğru cevap:** LIFO ve FIFO. (Sınav tek cevap istiyorsa şıklara bakıp birini seç, ikisi de boot loader değil.)
+
+---
+
+### Soru 11
+
+**Linux system normally boots with graphics with _ Runlevel**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | 1 | Single-user (kurtarma) modu. |
+| ❌ | 3 | Çok kullanıcılı, ağ var ama grafik arayüz yok (sadece metin). |
+| ✅ | 5 | Çok kullanıcılı ve grafik arayüzlü mod, masaüstü bu seviyede açılır. |
+| ❌ | 6 | Yeniden başlatma (reboot). |
+
+> [!TIP]
+> **Doğru cevap:** 5
+
+---
+
+### Soru 12
+
+**This Runlevel is used for system reboot**
+
+| | Şık | Neden |
+|:-:|---|---|
+| ❌ | 1 | Single-user (kurtarma) modu. |
+| ❌ | 3 | Metin tabanlı çok kullanıcılı mod. |
+| ❌ | 5 | Grafik arayüzlü çok kullanıcılı mod. |
+| ✅ | 6 | Sistemi yeniden başlatmak için kullanılır. |
+
+> [!TIP]
+> **Doğru cevap:** 6
+
+---
+
+## 🗺️ Özet kartı
+
+**Açılış (boot) sırası**
+
+```mermaid
+flowchart LR
+    A["⚡ Güç"] --> B["💾 Bootloader<br/>GRUB / LILO"] --> C["🧠 Kernel"] --> D["⚙️ init / systemd<br/>runlevel"] --> E["🖥️ Shell / GUI"]
+```
+
+**Runlevel'lar**
+
+| Runlevel | Anlamı |
+|:-:|---|
+| 1 | Single-user (kurtarma) |
+| 3 | Çok kullanıcılı, sadece metin |
+| 5 | Çok kullanıcılı, grafik |
+| 6 | Yeniden başlatma |
+
+**Hard link ve soft link**
+
+```mermaid
+flowchart LR
+    subgraph Hard["🔗 Hard link'ler"]
+        H1["isim1"] --> I(("inode<br/>+ veri"))
+        H2["isim2"] --> I
+    end
+    subgraph Soft["➰ Soft link"]
+        S["link"] -. "yol" .-> N["isim1"] --> I2(("inode<br/>+ veri"))
+    end
+```
+
+| | Hard link | Soft link |
+|---|:-:|:-:|
+| Neyi gösterir | inode | yol (path) |
+| Dosya sistemleri arası | ❌ | ✅ |
+| Orijinal isim silinince | ✅ erişilir | ❌ (dangling) |
+| Kendi özellikleri | ❌ (ortak) | ✅ |
+
+**LVM sırası**
+
+```mermaid
+flowchart LR
+    P["pvcreate"] --> V["vgcreate"] --> L["lvcreate"] --> M["mkfs"]
+```
