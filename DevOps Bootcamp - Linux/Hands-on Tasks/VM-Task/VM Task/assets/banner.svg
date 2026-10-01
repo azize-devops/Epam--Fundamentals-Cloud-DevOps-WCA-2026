@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-label="VM Task - Linux hands-on">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" rx="18" fill="url(#bg)"/>
+  <g opacity="0.07" stroke="#fff">
+    <path d="M0 60H1200M0 120H1200M0 180H1200M0 240H1200"/>
+    <path d="M200 0V300M400 0V300M600 0V300M800 0V300M1000 0V300"/>
+  </g>
+  <!-- terminal window -->
+  <g transform="translate(790,45)">
+    <rect width="360" height="210" rx="12" fill="#0b1220" stroke="#334155"/>
+    <rect width="360" height="34" rx="12" fill="#1e293b"/>
+    <circle cx="20" cy="17" r="6" fill="#ef4444"/>
+    <circle cx="40" cy="17" r="6" fill="#f59e0b"/>
+    <circle cx="60" cy="17" r="6" fill="#22c55e"/>
+    <g font-family="Menlo, Consolas, monospace" font-size="15">
+      <text x="20" y="68" fill="#22d3ee">student@student:~$</text>
+      <text x="20" y="96" fill="#e2e8f0">./checker -test-suite vm_task</text>
+      <text x="20" y="126" fill="#4ade80">✔ 27 / 27 tests passed</text>
+      <text x="20" y="156" fill="#22d3ee">student@student:~$</text>
+      <rect x="170" y="143" width="9" height="17" fill="#e2e8f0"/>
+    </g>
+  </g>
+  <!-- title -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="60" y="120" font-size="64" font-weight="800" fill="#fff">VM Task</text>
+    <rect x="60" y="138" width="170" height="6" rx="3" fill="url(#acc)"/>
+    <text x="60" y="185" font-size="24" fill="#cbd5e1">Linux hands-on · Ubuntu 20.04 · Vagrant</text>
+    <text x="60" y="222" font-size="18" fill="#94a3b8">EPAM Cloud &amp; DevOps WCA 2026 · DevOps BootCamp: Linux</text>
+  </g>
+</svg>
