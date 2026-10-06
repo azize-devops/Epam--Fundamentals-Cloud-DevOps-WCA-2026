@@ -2,157 +2,157 @@
 
 # 🐚 Linux Shell Quiz
 
-### Sorular · Doğru Cevaplar · Neden Doğru / Neden Yanlış
+### Questions · Correct Answers · Why Right or Wrong
 
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white)
-![Sorular](https://img.shields.io/badge/Soru-5-blue?style=for-the-badge)
-![Durum](https://img.shields.io/badge/Cevaplar-Hazır-success?style=for-the-badge)
+![Questions](https://img.shields.io/badge/Questions-5-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Answers-Ready-success?style=for-the-badge)
 
-**✅ Doğru seçenek &nbsp;·&nbsp; ❌ Yanlış seçenek**
+**✅ Correct option &nbsp;·&nbsp; ❌ Wrong option**
 
 </div>
 
 ---
 
-## 📑 İçindekiler
+## Table of Contents
 
-- [⚡ Hızlı Özet](#-hızlı-özet)
-- [1️⃣ Bilinen shell'lerin listesi](#1️⃣-bilinen-shelllerin-listesi)
-- [2️⃣ Shell değiştirme](#2️⃣-shell-değiştirme)
-- [3️⃣ Kullanıcıya özel başlangıç dosyaları](#3️⃣-kullanıcıya-özel-başlangıç-dosyaları)
-- [4️⃣ Shell ne zaman kullanılmamalı](#4️⃣-shell-ne-zaman-kullanılmamalı)
-- [5️⃣ Shell ne zaman kullanılabilir](#5️⃣-shell-ne-zaman-kullanılabilir)
-- [🧠 Akılda Kalsın](#-akılda-kalsın)
-
----
-
-## ⚡ Hızlı Özet
-
-| # | 📝 Soru | ✅ Doğru Cevap |
-|:-:|---------|----------------|
-| 1 | Bilinen shell'leri listeleyen dosya | `/etc/shells` |
-| 2 | Aktif terminalde shell değiştirme | Yeni shell'in adını yazmak |
-| 3 | Kullanıcıya özel başlangıç dosyaları | `~/.profile` · `~/.bashrc` |
-| 4 | Shell **kullanılmamalı** | Veri yapıları · Karmaşık uygulamalar · Kritik sistemler |
-| 5 | Shell **kullanılabilir** | Çoğunlukla başka araçları çağırırken |
+- [Quick Summary](#quick-summary)
+- [Question 1: Known shells](#question-1-known-shells)
+- [Question 2: Switching shells](#question-2-switching-shells)
+- [Question 3: User-specific startup files](#question-3-user-specific-startup-files)
+- [Question 4: When not to use shell](#question-4-when-not-to-use-shell)
+- [Question 5: When to use shell](#question-5-when-to-use-shell)
+- [Key Takeaway](#key-takeaway)
 
 ---
 
-## 1️⃣ Bilinen shell'lerin listesi
+## Quick Summary
 
-> **❓ Linux sistemindeki bilinen shell'lerin genel görünümünü hangi dosya verir?**
+| # | 📝 Question | ✅ Correct Answer |
+|:-:|-------------|-------------------|
+| 1 | File that lists the known shells | `/etc/shells` |
+| 2 | Switching shells in the active terminal | Enter the name of the new shell |
+| 3 | User-specific startup files | `~/.profile` · `~/.bashrc` |
+| 4 | Shell should **not** be used for | Data structures · Complex applications · Mission-critical systems |
+| 5 | Shell **can** be used for | Mostly calling other utilities |
 
-| | Seçenek | Neden? |
-|:-:|---------|--------|
-| ✅ | **`/etc/shells`** | Sistemde geçerli kabul edilen login shell'leri listeler (`/bin/bash`, `/bin/sh`, `/usr/bin/zsh` ...). `chsh` komutu da bu dosyayı kontrol eder. |
-| ❌ | `/etc/passwords` | Böyle bir dosya yok. Kullanıcılar `/etc/passwd`, parola özetleri `/etc/shadow` içindedir. |
-| ❌ | `/etc/known_shells` | Standart bir Linux dosyası değil, uydurma isim. |
-| ❌ | `/etc/shells.sh` | `.sh` uzantısı betik içindir; liste dosyası böyle adlandırılmaz. |
+---
+
+## Question 1: Known shells
+
+> **❓ Which file gives an overview of known shells on a Linux system?**
+
+| | Option | Why? |
+|:-:|--------|------|
+| ✅ | **`/etc/shells`** | Lists the valid login shells installed on the system (`/bin/bash`, `/bin/sh`, `/usr/bin/zsh`, ...). The `chsh` command also checks this file. |
+| ❌ | `/etc/passwords` | No such file. User accounts live in `/etc/passwd` and password hashes in `/etc/shadow`. |
+| ❌ | `/etc/known_shells` | Not a standard Linux file; the name is made up. |
+| ❌ | `/etc/shells.sh` | The `.sh` extension is for scripts; the list file is not named this way. |
 
 > [!TIP]
-> Listeyi görmek için:
+> To see the list:
 > ```bash
 > cat /etc/shells
 > ```
 
 ---
 
-## 2️⃣ Shell değiştirme
+## Question 2: Switching shells
 
-> **❓ Aktif terminalde bir shell'den diğerine nasıl geçilir?**
+> **❓ How do you switch from one shell to another in the active terminal?**
 
-| | Seçenek | Neden? |
-|:-:|---------|--------|
-| ✅ | **Yeni shell'in adını yazmak** | Shell de sıradan bir programdır. `zsh` veya `bash` yazınca yeni shell **alt süreç** olarak açılır. `exit` ile eskisine dönülür. |
-| ❌ | `/etc/shells` içindeki adı güncellemek | Dosya yalnızca izinli shell'lerin listesidir, çalışan shell'i değiştirmez. |
-| ❌ | `~/.bashrc` içindeki adı güncellemek | Yeni bash oturumu açılırken çalışır; mevcut terminalde geçiş yapmaz. |
-| ❌ | OS yeniden başlatılmalı | Alakasız, yeniden başlatma gerekmez. |
+| | Option | Why? |
+|:-:|--------|------|
+| ✅ | **Enter the name of the new shell** | A shell is just a program. Typing `zsh` or `bash` starts the new shell as a **child process**. Type `exit` to return to the previous one. |
+| ❌ | Update the active shell's name in `/etc/shells` | That file only lists allowed shells; it does not change the running shell. |
+| ❌ | Update the active shell's name in `~/.bashrc` | It runs when a new bash session starts; it does not switch the current terminal. |
+| ❌ | It can't be done because the OS must be restarted | Wrong. No restart is needed to change shells. |
 
 ```bash
-$ zsh        # zsh'e geç
-$ exit       # önceki shell'e dön
+$ zsh        # switch to zsh
+$ exit       # go back to the previous shell
 ```
 
 > [!NOTE]
-> Varsayılan shell'i **kalıcı** olarak değiştirmek için `chsh -s /bin/zsh` kullanılır. Seçilen shell `/etc/shells` içinde olmalıdır.
+> To change your default shell **permanently**, use `chsh -s /bin/zsh`. The chosen shell must be listed in `/etc/shells`.
 
 ---
 
-## 3️⃣ Kullanıcıya özel başlangıç dosyaları
+## Question 3: User-specific startup files
 
-> **❓ Kullanıcıya özel (user-specific) başlangıç dosyalarının hepsini seçin.**
+> **❓ Select all of the user-specific startup files.**
 
-| | Seçenek | Neden? |
-|:-:|---------|--------|
-| ❌ | `/etc/profile` | **Sistem geneli** dosya, tüm kullanıcılar için çalışır. |
-| ❌ | `/etc/.profile` | Standart bir dosya değil. |
-| ✅ | **`~/.profile`** | Home dizinindedir, login shell'de sadece o kullanıcı için çalışır. |
-| ✅ | **`~/.bashrc`** | Home dizinindedir, interaktif bash oturumlarında sadece o kullanıcı için çalışır. |
+| | Option | Why? |
+|:-:|--------|------|
+| ❌ | `/etc/profile` | **System-wide** file, runs for all users. |
+| ❌ | `/etc/.profile` | Not a standard file. |
+| ✅ | **`~/.profile`** | Lives in the home directory; runs at login for that user only. |
+| ✅ | **`~/.bashrc`** | Lives in the home directory; runs in interactive bash sessions for that user only. |
 
 ```text
-/etc/profile   →  🌍 herkes için (sistem geneli)
-~/.profile     →  👤 sadece sen için
-~/.bashrc      →  👤 sadece sen için
+/etc/profile   →  🌍 for everyone (system-wide)
+~/.profile     →  👤 for you only
+~/.bashrc      →  👤 for you only
 ```
 
 > [!IMPORTANT]
-> **Kural:** Başında `~/` (home dizini) olanlar kullanıcıya özeldir, `/etc/` altındakiler sistem geneldir.
+> **Rule of thumb:** files starting with `~/` (home directory) are user-specific; files under `/etc/` are system-wide.
 
 ---
 
-## 4️⃣ Shell ne zaman kullanılmamalı
+## Question 4: When not to use shell
 
-> **❓ Shell şu durumlarda kullanılmamalıdır (doğru olanların hepsini seçin).**
+> **❓ Shell should not be used for (select all correct options).**
 
-| | Seçenek | Neden? |
-|:-:|---------|--------|
-| ✅ | **Bağlı liste, ağaç gibi veri yapıları gerekiyorsa** | Shell'de gelişmiş veri yapısı desteği yok (sadece değişken ve dizi). Python, C, Java daha uygun. |
-| ✅ | **Yapılandırılmış programlama şart olan karmaşık uygulamalar** | Tip denetimi, fonksiyon prototipi gibi özellikler yok; büyük projede hata yapmak kolay. |
-| ❌ | Çoğunlukla başka araçları çağırıyor, az veri işliyorsanız | Tam tersi: shell'in **en güçlü olduğu** alan bu (bkz. Soru 5). |
-| ✅ | **Şirketin geleceğini bağladığınız kritik uygulamalar** | Betikler kırılgan, hata yönetimi ve performans sınırlı; kritik sistemler sağlam dillerle yazılmalı. |
+| | Option | Why? |
+|:-:|--------|------|
+| ✅ | **Need data structures, such as linked lists or trees** | Shell has no real support for advanced data structures (only variables and arrays). Python, C or Java fit better. |
+| ✅ | **Complex applications where structured programming is a necessity** | No type-checking of variables, no function prototypes, etc.; large projects become error-prone. |
+| ❌ | If you're mostly calling other utilities and doing relatively little data manipulation | The opposite: this is where shell is **strongest** (see Question 5). |
+| ✅ | **Mission-critical applications upon which you are betting the future of the company** | Scripts are fragile, with limited error handling and performance; critical systems need robust, testable languages. |
 
 > [!WARNING]
-> Bu soruda 3 doğru cevap var. Üçüncü madde tuzaktır, o madde 5. sorunun cevabıdır.
+> This question has 3 correct answers. The third option is the trap: it is the correct answer to Question 5.
 
 ---
 
-## 5️⃣ Shell ne zaman kullanılabilir
+## Question 5: When to use shell
 
-> **❓ Shell şu durumlarda kullanılabilir (doğru olanların hepsini seçin).**
+> **❓ Shell can be used for (select all correct options).**
 
-| | Seçenek | Neden? |
-|:-:|---------|--------|
-| ❌ | Veri yapıları gerekiyorsa | Shell bunun için uygun değil. |
-| ❌ | Yapılandırılmış programlama gerektiren karmaşık uygulamalar | Tip denetimi vb. yok. |
-| ✅ | **Çoğunlukla başka araçları çağırıyor, az veri işliyorsanız** | Shell'in asıl işi: komutları birleştirmek (pipe, yönlendirme), otomasyon, yedekleme, dosya işlemleri, sistem yönetimi betikleri. |
-| ❌ | Mission-critical uygulamalar | Riskli, yanlış tercih. |
+| | Option | Why? |
+|:-:|--------|------|
+| ❌ | Need data structures, such as linked lists or trees | Shell is not suited for this. |
+| ❌ | Complex applications where structured programming is a necessity | No type-checking, etc. |
+| ✅ | **If you're mostly calling other utilities and doing relatively little data manipulation** | This is shell's real job: gluing commands together (pipes, redirection), automation, backups, file operations, system administration scripts. |
+| ❌ | Mission-critical applications upon which you are betting the future of the company | Risky and the wrong choice. |
 
 ---
 
-## 🧠 Akılda Kalsın
+## Key Takeaway
 
 <div align="center">
 
-### Shell = 🔗 "Yapıştırıcı" dil
+### Shell = 🔗 the "glue" language
 
-| 👍 İyi olduğu işler | 👎 Kötü olduğu işler |
-|---------------------|----------------------|
-| Komutları birleştirmek | Veri yapıları (liste, ağaç) |
-| Otomasyon, yedekleme | Karmaşık, büyük uygulamalar |
-| Küçük sistem betikleri | Kritik, şirketin geleceğini bağlayan sistemler |
+| 👍 Good at | 👎 Bad at |
+|------------|-----------|
+| Combining commands | Data structures (lists, trees) |
+| Automation and backups | Complex, large applications |
+| Small system scripts | Mission-critical systems |
 
 </div>
 
 <details>
-<summary><b>🔁 4. ve 5. soru farkı (tıkla)</b></summary>
+<summary><b>🔁 Difference between Question 4 and Question 5 (click)</b></summary>
 
 <br>
 
-Bu iki soru birbirinin tersidir:
+The two questions are opposites:
 
-- **4. soru:** 1., 2. ve 4. madde seçilir (shell'in zayıf olduğu yerler).
-- **5. soru:** Sadece 3. madde seçilir (shell'in güçlü olduğu yer).
+- **Question 4:** options 1, 2 and 4 are correct (where shell is weak).
+- **Question 5:** only option 3 is correct (where shell is strong).
 
 </details>
 
@@ -160,6 +160,6 @@ Bu iki soru birbirinin tersidir:
 
 <div align="center">
 
-⭐ Faydalı olduysa kaydetmeyi unutma · Hazırlayan: **Claude** 🤖 · 06.10.2026
+⭐ Prepared by **Claude** 🤖 · 06.10.2026
 
 </div>
