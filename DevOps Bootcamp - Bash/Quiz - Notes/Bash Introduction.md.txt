@@ -1,0 +1,99 @@
+# 🐚 Linux Shell Quiz — Cevaplar ve Açıklamalar
+
+> Shell temellerini pekiştirmek için hazırlanmış soru-cevap özeti.
+> ✅ = doğru seçenek &nbsp;|&nbsp; ❌ = yanlış seçenek
+
+---
+
+## 📋 Hızlı Özet
+
+| # | Soru | Doğru Cevap |
+|---|------|-------------|
+| 1 | Bilinen shell'leri listeleyen dosya | `/etc/shells` |
+| 2 | Aktif terminalde shell değiştirme | Yeni shell'in adını yazmak |
+| 3 | Kullanıcıya özel başlangıç dosyaları | `~/.profile` ve `~/.bashrc` |
+| 4 | Shell **kullanılmamalı** | Veri yapıları, karmaşık uygulamalar, kritik sistemler |
+| 5 | Shell **kullanılabilir** | Çoğunlukla başka araçları çağırırken |
+
+---
+
+## 1️⃣ Linux sistemindeki bilinen shell'lerin listesini hangi dosya verir?
+
+| | Seçenek | Açıklama |
+|---|---------|----------|
+| ✅ | **`/etc/shells`** | Sistemde geçerli olarak tanımlı login shell'lerin listesini tutar (`/bin/bash`, `/bin/sh`, `/usr/bin/zsh` gibi). `chsh` komutu da bu dosyayı kontrol eder. |
+| ❌ | `/etc/passwords` | Böyle bir dosya yok. Kullanıcı bilgileri `/etc/passwd`, parolalar `/etc/shadow` içindedir (ayrıca "s" harfi fazla). |
+| ❌ | `/etc/known_shells` | Standart bir Linux dosyası değildir, uydurma isimdir. |
+| ❌ | `/etc/shells.sh` | Böyle bir dosya yoktur. `.sh` uzantısı betik (script) içindir, liste dosyası için kullanılmaz. |
+
+💡 **Pratik ipucu:**
+```bash
+cat /etc/shells
+```
+
+---
+
+## 2️⃣ Aktif terminalde bir shell'den diğerine nasıl geçilir?
+
+| | Seçenek | Açıklama |
+|---|---------|----------|
+| ✅ | **Yeni shell'in adını yazmak** | Shell de sıradan bir programdır. `zsh`, `bash`, `sh` yazıp Enter'a basınca yeni bir shell **alt süreç (child process)** olarak başlar. `exit` ile eski shell'e dönersiniz. |
+| ❌ | `/etc/shells` içindeki adı güncellemek | Bu dosya yalnızca izin verilen shell'lerin listesidir; çalışan shell'i değiştirmez. |
+| ❌ | `~/.bashrc` içindeki adı güncellemek | `.bashrc` yeni bir bash oturumu açıldığında çalışan ayarlar içerir; mevcut terminalde shell değişimi yapmaz. |
+| ❌ | OS'nin yeniden başlatılması gerekir | Alakasız. Shell değiştirmek için yeniden başlatma gerekmez. |
+
+💡 **Not:** Kalıcı olarak varsayılan shell'i değiştirmek istiyorsanız `chsh -s /bin/zsh` kullanılır (bu da `/etc/shells` içindeki bir shell olmak zorundadır).
+
+---
+
+## 3️⃣ Kullanıcıya özel (user-specific) başlangıç dosyalarını seçin
+
+| | Seçenek | Açıklama |
+|---|---------|----------|
+| ❌ | `/etc/profile` | **Sistem geneli** dosyadır; tüm kullanıcılar için çalışır. |
+| ❌ | `/etc/.profile` | Standart bir dosya değildir. |
+| ✅ | **`~/.profile`** | Kullanıcının home dizinindeki login shell başlangıç dosyasıdır. |
+| ✅ | **`~/.bashrc`** | Kullanıcının home dizinindeki, interaktif bash oturumlarında çalışan dosyadır. |
+
+🔑 **Kural:** Başında `~/` (home dizini) olan dosyalar **kullanıcıya özeldir**; `/etc/` altındakiler **sistem geneli**dir.
+
+```
+/etc/profile   →  herkes için
+~/.profile     →  sadece sen için
+~/.bashrc      →  sadece sen için
+```
+
+---
+
+## 4️⃣ Shell **hangi durumlarda kullanılmamalıdır?** (doğru olanların hepsi)
+
+| | Seçenek | Neden? |
+|---|---------|--------|
+| ✅ | **Bağlı liste, ağaç gibi veri yapıları gerekiyorsa** | Shell'in gelişmiş veri yapısı desteği yoktur (sadece değişkenler ve dizi/array). Python, C, Java gibi diller daha uygundur. |
+| ✅ | **Yapılandırılmış programlama şart olan karmaşık uygulamalar** | Shell'de tip denetimi (type-checking), fonksiyon prototipleri gibi özellikler yoktur; büyük projelerde hata yapmak kolaydır. |
+| ❌ | Çoğunlukla başka araçları çağırıyor, az veri işliyorsanız | Tam tersine, shell'in **en güçlü olduğu** alan budur. (Bkz. Soru 5) |
+| ✅ | **Şirketin geleceğini bağladığınız kritik uygulamalar** | Shell betikleri kırılgandır, hata yönetimi ve performansı sınırlıdır; kritik sistemler için sağlam, test edilebilir diller seçilmelidir. |
+
+---
+
+## 5️⃣ Shell **hangi durumlarda kullanılabilir?** (doğru olanların hepsi)
+
+| | Seçenek | Neden? |
+|---|---------|--------|
+| ❌ | Veri yapıları gerekiyorsa | Shell bunun için uygun değil. |
+| ❌ | Yapılandırılmış programlama gerektiren karmaşık uygulamalar | Tip denetimi vb. yok. |
+| ✅ | **Çoğunlukla başka araçları çağırıyor ve az veri işliyorsanız** | Shell'in asıl amacı budur: komutları birbirine bağlamak (pipe, yönlendirme), otomasyon, yedekleme, dosya işlemleri, sistem yönetimi betikleri. |
+| ❌ | Mission-critical uygulamalar | Riskli, yanlış tercihtir. |
+
+---
+
+## 🧠 Akılda Kalsın
+
+```
+Shell = "Yapıştırıcı" (glue) dil
+
+✔ Komutları birleştir, otomasyon yap, küçük işler çöz
+✘ Büyük, karmaşık, veri yapısı ağırlıklı ya da kritik sistemler yazma
+```
+
+> 4. ve 5. sorular birbirinin **tersidir**: 4. sorudaki ilk, ikinci ve dördüncü maddeler "kullanma" listesidir; üçüncü madde ise 5. sorunun tek doğru cevabıdır.
